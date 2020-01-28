@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Overlay animation</title>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,500i,600&display=swap" rel="stylesheet">
+  
+
+<style>
+  *{
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+    background: #fff173;
+    transition: .5s all;
+    padding: 12px;
+  }
+
+  .inner{
+    max-width: 800px;
+    margin:0 auto;
+  }
+
+  img{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin:25px 0 12px; 
+    display: block;
+  }
+  a{
+    background: #000;
+    text-decoration: none;
+    padding: 12px 25px;
+    margin-bottom: 25px;
+    display: inline-block;
+    color: #fff;
+    outline: none;
+    border: none;
+  }
+  div#popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    padding: 50px 50px 30px;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    padding: 50px;
+    box-shadow: 2px 12px 27px #000;
+  }
+  a#close_btn {
+    margin-top: 25px;
+    font-size: 15px;
+    padding: 10px 25px;
+  }
+
+  .container.active{
+    filter: blur(7px);
+  }
+  span.close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: #000;
+    color: #fff;
+    padding: 12px;
+    border-radius: 50%;
+    font-size: 14px;
+    height: 8px;
+    width: 8px;
+    text-align: center;
+    line-height: 8px;
+    cursor: pointer;
+  }
+</style>
+
+</head>
+<body>
+
+  <div class="container" id="main">
+    <div class="inner">
+      <h2>Lorem ipsum dolor sit amet. Illum voluptas voluptates voluptatum maxime als, velit consequatur praesentium, amet!</h2>
+      <img src="image.jpg" alt="image">
+      <a href="#" id="read_more">Read More</a>
+    </div>
+
+  </div>
+
+  <div id="popup">
+    <h2>Lorem ipsum doasasd as dasd asd asdasd ore quis doloremque!</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam dolorem modi, ab nulla aspernatur sunt, facere officia facilis labore error perferendis alias nesciunt asperiores. Odit autem error laudantium alias ipsum.</p>
+    <a href="#" id="close_btn">Close</a>
+    <span class="close">X</span>
+  </div>
+  
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $(".container #read_more").click(function(event) {
+      event.preventDefault();
+      $(this).closest('#main').toggleClass('active');
+
+      if($(this).closest('#main').hasClass('active')){
+        $("#popup").fadeIn();
+      }
+      else{
+         $("#popup").fadeOut();
+      }
+    });
+
+
+    $("#popup #close_btn, #popup .close").click(function(event) {
+      event.preventDefault();
+      $(this).closest('#popup').siblings('#main').removeClass('active');
+      $(this).closest('#popup').fadeOut();
+    });
+
+  });  
+</script>
+
+</body>
+</html>
